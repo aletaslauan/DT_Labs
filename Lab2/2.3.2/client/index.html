@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <title>Users manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="libs/vue/vue.js"></script>
+  <script type="text/javascript" src="libs/axios/axios.js"></script>
+  <script type="text/javascript" src="users.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <ul class="user-list">
+      <li v-for="(user, index) in users">
+        <div class="user-row">
+          <div class="user-name"><b>{{ user.name }}</b></div>
+          <div class="user-city"><i>{{ user.city }}</i></div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="select-user">Select</div>
+    <select v-model="selectedUser">
+      <option v-for="(user, index) in users":value="index">{{ user.name }}</option>
+    </select>
+    <button v-on:click="remove(selectedUser)">Remove</button>
+  </div>
+  
+    <div class="add-user-btn">Add</div>
+    <input type="text" v-model="newUserName" placeholder="Name">
+    <input type="text" v-model="newUserCity" placeholder="City">
+    <button v-on:click="add(newUserName, newUserCity)">Add</button>
+  </div>
+
+  <div class="modify-user-btn">Modify</div>
+  <input type="text" v-model="modifyUserName" placeholder="Name">
+  <input type="text" v-model="modifyUserCity" placeholder="City">
+  <button v-on:click="modify(selectedUser, modifyUserName, modifyUserCity)">Modify</button>
+</div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
